@@ -46,6 +46,9 @@ class Rational {
      */
     public void subtract(Rational x) {
         // to be completed
+        this.numerator = (this.numerator * x.denominator) - (x.numerator * this.denominator);
+        this.denominator = (this.denominator * x.denominator);
+        this.simplestForm();
     }
 
     /***
@@ -54,6 +57,9 @@ class Rational {
      */
     public void multiply(Rational x) { 
         // to be completed
+        this.numerator = (this.numerator * x.numerator);
+        this.denominator = (this.denominator * x.denominator);
+        this.simplestForm();
     }
 
     /***
@@ -62,6 +68,9 @@ class Rational {
      */
     public void divide(Rational x) {
         // to be completed
+        this.numerator = (this.numerator * x.denominator);
+        this.denominator = (this.denominator * x.numerator);
+        this.simplestForm();
     }
 
     /***
@@ -71,7 +80,13 @@ class Rational {
      */
     public boolean equals(Object x) {
         // to be completed
-        return true; // TODO: This needs to be modified.
+        Rational target = Rational.class.cast(x);
+        this.simplestForm();
+        target.simplestForm();
+        if(this.numerator == target.numerator && this.denominator == target.denominator){
+            return true;
+        }
+        return false; // TODO: This needs to be modified.
     }
 
     /***
@@ -82,7 +97,16 @@ class Rational {
      */
     public long compareTo(Object x) {
         // to be completed
-        return -1; // TODO: this needs to be modified.
+        Rational target = Rational.class.cast(x);
+        this.simplestForm();
+        target.simplestForm();
+        if (this.numerator == target.numerator && this.denominator == target.denominator) {
+            return 0;
+        } else if ((this.numerator * target.denominator) < (target.numerator * this.denominator)) {
+            return -1;
+        } else {
+            return 1; // TODO: this needs to be modified.
+        }
     }
 
     /***
@@ -91,7 +115,7 @@ class Rational {
      */
     public String toString() { 
         // to be completed
-        return ""; // TODO: This needs to be modified.
+        return this.numerator + "/" + this.denominator; // TODO: This needs to be modified.
     }
 
     public static void main(String[] args) {
